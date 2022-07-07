@@ -1,0 +1,93 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @file
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\training_correction\Event\TpEvent;
+
+/**
+ * Implements hook_help().
+ */
+function training_correction_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.training_correction':
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module provides the correction of the training exercises.') . '</p>';
+
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function training_correction_form_node_pokemon_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Several ways in relation to the different levels of the render array.
+  // - The field.
+  // - The widget.
+  // - The input.
+  // - The input - with an attribute.
+  $form['field_id']['#disabled'] = TRUE;
+  // $form['field_id']['widget']['#disabled'] = TRUE;
+  // $form['field_id']['widget'][0]['#disabled'] = TRUE;
+  // $form['field_id']['widget'][0]['value']['#disabled'] = TRUE;
+  // $form['field_id']['widget'][0]['value']['#attributes']['disabled'] = TRUE;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function training_correction_form_node_pokemon_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Set the custom validation callback function.
+  $form['#validate'][] = 'is_pokedex_id_unique';
+}
+
+/**
+ * Pokemon node form custom validation callback function.
+ * Verify if the pokedex id is unique.
+ */
+function is_pokedex_id_unique(&$form, FormStateInterface $form_state) {
+  // Get the Pokedex id
+  $pokedexId = $form_state->getValue('field_id');
+  $pokedexId = \reset($pokedexId);
+
+  // Looking for a pokemon with the same pokedex id.
+  $ids = \Drupal::entityTypeManager()
+    ->getStorage('node')
+    ->getQuery()
+    ->condition('field_id', $pokedexId['value'])
+    ->execute();
+
+  // One or more pokemons are found.
+  if (!empty($ids)) {
+    // Get the pokemon.
+    $id = \reset($ids);
+    $pokemon = \Drupal::entityTypeManager()
+      ->getStorage('node')
+      ->load($id);
+
+    // Trigger the error message.
+    $form_state->setErrorByName(
+      'field_id',
+      t('This id is already registred by @pokemon', ['@pokemon' => $pokemon->getTitle()]));
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+function training_correction_node_insert(EntityInterface $entity) {
+  if ('article' === $entity->bundle()) {
+    $event = new TpEvent($entity);
+    \Drupal::service('event_dispatcher')->dispatch(
+      $event,
+      TpEvent::ENTITY_INSERT
+    );
+  }
+}

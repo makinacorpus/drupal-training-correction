@@ -1,0 +1,14 @@
+services:
+
+  training_correction.tp_service:
+    class: Drupal\training_correction\Service\TpService
+    arguments:
+      - '@http_client_factory'
+      - '@serialization.json'
+
+  training_correction.tp_event:
+    class: Drupal\training_correction\EventSubscriber\TpEventSubscriber
+    arguments:
+      - '@messenger'
+    tags:
+      - { name: 'event_subscriber' }

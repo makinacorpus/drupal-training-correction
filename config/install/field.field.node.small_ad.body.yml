@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.small_ad
+  module:
+    - text
+    - training_correction
+  enforced:
+    module:
+      - training_correction
+id: node.small_ad.body
+field_name: body
+entity_type: node
+bundle: small_ad
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

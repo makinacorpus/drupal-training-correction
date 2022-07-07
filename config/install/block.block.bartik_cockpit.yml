@@ -1,0 +1,36 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.cockpit
+  module:
+    - system
+    - user
+    - training_correction
+  enforced:
+    module:
+      - training_correction
+  theme:
+    - bartik
+id: bartik_cockpit
+theme: bartik
+region: sidebar_first
+weight: -5
+provider: null
+plugin: 'system_menu_block:cockpit'
+settings:
+  id: 'system_menu_block:cockpit'
+  label: Cockpit
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

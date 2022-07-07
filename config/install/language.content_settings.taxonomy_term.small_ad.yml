@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.small_ad
+  module:
+    - content_translation  
+    - training_correction
+  enforced:
+    module:
+      - training_correction
+third_party_settings:
+  content_translation:
+    enabled: true
+id: taxonomy_term.small_ad
+target_entity_type_id: taxonomy_term
+target_bundle: small_ad
+default_langcode: site_default
+language_alterable: true

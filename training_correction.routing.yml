@@ -1,0 +1,31 @@
+training_correction.tp_controller:
+  path: '/tp-controller'
+  defaults:
+    _controller: \Drupal\training_correction\Controller\TpController::render
+    _title: 'TP Controller'
+  requirements:
+    _role: 'authenticated'
+
+training_correction.tp_entity:
+  path: '/tp-entity'
+  defaults:
+    _controller: \Drupal\training_correction\Controller\TpEntityController::render
+    _title: 'TP Entity'
+  requirements:
+    _role: 'authenticated'
+
+training_correction.tp_service:
+  path: '/tp-service'
+  defaults:
+    _controller: \Drupal\training_correction\Controller\TpServiceController::render
+    _title: 'TP Service'
+  requirements:
+    _permission: 'access content'
+
+training_correction.tp_form:
+  path: '/tp-form'
+  defaults:
+    _form:  '\Drupal\training_correction\Form\TpForm'
+    _title: 'TP Form'
+  requirements:
+    _permission: 'access content'

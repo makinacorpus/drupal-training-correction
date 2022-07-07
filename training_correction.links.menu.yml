@@ -1,0 +1,27 @@
+################
+# TP CONTROLLER
+################
+
+training_correction.tp_controller:
+  menu_name: main
+  title: 'TP Controller'
+  route_name: training_correction.tp_controller
+  weight: 1
+
+training_correction.tp_entity:
+  menu_name: main
+  title: 'TP Entité'
+  route_name: training_correction.tp_entity
+  weight: 2
+
+training_correction.tp_service:
+  menu_name: main
+  title: 'TP Services'
+  route_name: training_correction.tp_service
+  weight: 3
+
+training_correction.tp_form:
+  menu_name: main
+  title: 'TP Form'
+  route_name: training_correction.tp_form
+  weight: 4

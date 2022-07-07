@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies: 
+  module:
+    - training_correction
+  enforced:
+    module:
+      - training_correction
+name: 'Small ad'
+vid: small_ad
+description: 'For announcement. '
+weight: 0

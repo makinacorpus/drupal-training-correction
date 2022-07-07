@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies:   
+  module:
+    - training_correction
+  enforced:
+    module:
+      - training_correction
+id: cockpit
+label: Cockpit
+description: 'Authenticated account menu.'
+locked: false

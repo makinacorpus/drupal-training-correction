@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - training_correction
+  enforced:
+    module:
+      - training_correction
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Small ad'
+type: small_ad
+description: 'Use <em>Small ad</em> to create a new annoucement.'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: true
