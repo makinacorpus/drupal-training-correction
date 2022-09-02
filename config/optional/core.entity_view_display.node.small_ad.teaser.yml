@@ -3,13 +3,14 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.small_ad.body
+    - field.field.node.small_ad.field_description
     - field.field.node.small_ad.field_email
+    - field.field.node.small_ad.field_featured_media
+    - field.field.node.small_ad.field_price
     - field.field.node.small_ad.field_tag
     - node.type.small_ad
   module:
     - user
-    - training_correction
   enforced:
     module:
       - training_correction
@@ -18,20 +19,37 @@ targetEntityType: node
 bundle: small_ad
 mode: teaser
 content:
-  field_tag:
+  field_featured_media:
     type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
     weight: 0
     region: content
+  field_price:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_tag:
+    type: entity_reference_label
     label: inline
     settings:
       link: true
     third_party_settings: {  }
-  links:
     weight: 1
     region: content
+  links:
     settings: {  }
     third_party_settings: {  }
+    weight: 3
+    region: content
 hidden:
-  body: true
+  field_description: true
   field_email: true
   langcode: true

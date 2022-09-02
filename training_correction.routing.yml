@@ -10,7 +10,7 @@ training_correction.tp_entity:
   path: '/tp-entity'
   defaults:
     _controller: \Drupal\training_correction\Controller\TpEntityController::render
-    _title: 'TP Entity'
+    _title: 'TP Entité'
   requirements:
     _role: 'authenticated'
 
@@ -18,7 +18,7 @@ training_correction.tp_service:
   path: '/tp-service'
   defaults:
     _controller: \Drupal\training_correction\Controller\TpServiceController::render
-    _title: 'TP Service'
+    _title: 'TP Services'
   requirements:
     _permission: 'access content'
 

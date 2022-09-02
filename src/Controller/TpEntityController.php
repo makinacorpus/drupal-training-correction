@@ -22,7 +22,7 @@ class TpEntityController extends ControllerBase {
     $header = [
       $this->t('Username'),
       $this->t('Email'),
-      $this->t('Created at'),
+      $this->t('Newsletter'),
     ];
 
     // Get all user uids.

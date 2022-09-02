@@ -11,10 +11,10 @@ dependencies:
     module:
       - training_correction
   theme:
-    - bartik
-id: bartik_cockpit
-theme: bartik
-region: sidebar_first
+    - olivero
+id: olivero_cockpit
+theme: olivero
+region: sidebar
 weight: -5
 provider: null
 plugin: 'system_menu_block:cockpit'

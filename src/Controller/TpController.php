@@ -15,6 +15,7 @@ class TpController extends ControllerBase {
    * Display information on the website.
    */
   public function render(): array {
+
     // Load the configuration.
     $configSystem = $this->config('system.site');
     // Get the required information.

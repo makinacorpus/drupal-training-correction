@@ -46,7 +46,7 @@ class TpEventSubscriber implements EventSubscriberInterface {
     $entity = $event->getEntity();
     $title = $entity->getTitle();
     $this->messenger->addWarning(
-      $this->t('@article has toooo be moderated', ['@article' => $title])
+      $this->t('@article has to be moderated', ['@article' => $title])
     );
   }
 
