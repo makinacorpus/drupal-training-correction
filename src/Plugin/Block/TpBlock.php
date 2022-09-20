@@ -104,12 +104,12 @@ class TpBlock extends BlockBase implements ContainerFactoryPluginInterface {
     if ('article' !== $node->bundle()) {
       return;
     }
-    if ($node->get('field_news')->isEmpty()) {
+    if ($node->get('field_tags')->isEmpty()) {
       return;
     }
 
     // Get the first category of the article.
-    $firstTag = $node->get('field_news')->first()->getValue();
+    $firstTag = $node->get('field_tags')->first()->getValue();
 
     // Get the number of articles to display from the configuration.
     $config = $this->getConfiguration();
@@ -121,7 +121,7 @@ class TpBlock extends BlockBase implements ContainerFactoryPluginInterface {
       ->getStorage('node')
       ->getQuery()
       ->condition('type', 'article')
-      ->condition('field_news', $firstTag['target_id'])
+      ->condition('field_tags', $firstTag['target_id'])
       ->condition('nid', $node->id(), '!=')
       ->sort('created', 'DESC')
       ->range(0, $range)
@@ -148,6 +148,7 @@ class TpBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
     // Build the items list render array.
     $renderArray = [
+      '#title' => $this->t('Related articles'),
       '#theme' => 'item_list',
       '#items' => $links,
     ];
