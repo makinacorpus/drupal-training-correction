@@ -17,7 +17,7 @@ use Drupal\training_correction\Event\TpEvent;
 function training_correction_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     case 'help.page.training_correction':
-      $output .= '<h3>' . t('About') . '</h3>';
+      $output = '<h3>' . t('About') . '</h3>';
       $output .= '<p>' . t('This module provides the correction of the training exercises.') . '</p>';
 
       return $output;
@@ -75,7 +75,7 @@ function is_pokedex_id_unique(&$form, FormStateInterface $form_state) {
     // Trigger the error message.
     $form_state->setErrorByName(
       'field_id',
-      t('This id is already registred by @pokemon', ['@pokemon' => $pokemon->getTitle()]));
+      t('This id is already registred by @pokemon', ['@pokemon' => $pokemon->label()]));
   }
 }
 
