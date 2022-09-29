@@ -43,7 +43,7 @@ class TpForm extends FormBase {
       '#target_type' => 'taxonomy_term',
       '#selection_settings' => [
         'target_bundles' => [
-          'news',
+          'tags',
         ],
       ],
     ];
