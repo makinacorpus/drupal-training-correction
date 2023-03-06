@@ -61,6 +61,7 @@ function is_pokedex_id_unique(&$form, FormStateInterface $form_state) {
   $ids = \Drupal::entityTypeManager()
     ->getStorage('node')
     ->getQuery()
+    ->accessCheck()
     ->condition('field_id', $pokedexId['value'])
     ->execute();
 

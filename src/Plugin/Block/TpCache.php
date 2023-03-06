@@ -94,6 +94,7 @@ class TpCache extends BlockBase implements ContainerFactoryPluginInterface {
     $nids = $this->entityTypeManager
       ->getStorage('node')
       ->getQuery()
+      ->accessCheck()
       ->condition('type', 'article')
       ->condition('uid', $user->id())
       ->sort('created', 'DESC')

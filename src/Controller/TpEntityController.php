@@ -22,7 +22,7 @@ class TpEntityController extends ControllerBase {
     $header = [
       $this->t('Username'),
       $this->t('Email'),
-      $this->t('Birthdate'),
+      $this->t('Newsletter'),
     ];
 
     // Get all user uids.
@@ -30,7 +30,7 @@ class TpEntityController extends ControllerBase {
     $userUids = $this->entityTypeManager()
       ->getStorage('user')
       ->getQuery()
-      ->condition('field_newsletter', 1)
+      ->accessCheck()
       ->condition('uid', [0, 1], 'NOT IN')
       ->execute();
 
@@ -47,13 +47,10 @@ class TpEntityController extends ControllerBase {
       $userMail = $user->getEmail();
 
       // Get the value of the field using getter.
-      if (!$user->get('field_birthdate')->isEmpty()) {
+      if (!$user->get('field_newsletter')->isEmpty()) {
         // Note that we use the first() because of the 0..1 field's cardinality.
-        $fieldBirthdate = $user
-          ->get('field_birthdate')
-          ->first()
-          ->getValue();
-        $birthdate = $fieldBirthdate['value'];
+        $fieldNewsletter = $user->get('field_newsletter')->first()->getValue();
+        $newsletter = $fieldNewsletter['value'];
       }
 
       // You can also use the magic method.
@@ -63,7 +60,7 @@ class TpEntityController extends ControllerBase {
       $rows[] = [
         $userName,
         $userMail,
-        $birthdate ?? '',
+        $newsletter ?? 0,
       ];
     }
 

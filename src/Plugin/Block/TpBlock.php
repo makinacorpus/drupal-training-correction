@@ -120,6 +120,7 @@ class TpBlock extends BlockBase implements ContainerFactoryPluginInterface {
     $nids = $this->entityTypeManager
       ->getStorage('node')
       ->getQuery()
+      ->accessCheck()
       ->condition('type', 'article')
       ->condition('field_tags', $firstTag['target_id'])
       ->condition('nid', $node->id(), '!=')
